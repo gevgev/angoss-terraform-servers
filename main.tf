@@ -6,7 +6,7 @@ provider "aws" {
 
 /* App servers */
 resource "aws_instance" "angoss-server" {
-  count = 1
+  count = 0
   ami = "${lookup(var.amis-angoss, var.region)}"
   instance_type = "m4.xlarge"
   subnet_id = "${var.subnet_id}"
@@ -17,18 +17,3 @@ resource "aws_instance" "angoss-server" {
     Name = "angoss-app-server-${count.index}"
   }
 }
-
-/* App servers *
-resource "aws_instance" "angoss-server" {
-  count = 0
-  ami = "${lookup(var.amis-angoss, var.region)}"
-  instance_type = "m4.xlarge"
-  subnet_id = "${aws_subnet.private.id}"
-  vpc_security_group_ids = ["${aws_security_group.private.id}"]
-  key_name = "${aws_key_pair.deployer.key_name}"
-  source_dest_check = false
-  tags = { 
-    Name = "angoss-app-p-${count.index}"
-  }
-}
-*/
