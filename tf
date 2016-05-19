@@ -9,12 +9,30 @@ fi
 
 readonly instances=$1
 
-if [ "$instances" -gt 2 ]; then
+if [ "$instances" -gt 2 -o "$instances" -lt 1 ]; then
   echo "ERROR: max allowed instances is 2"
   exit 1
 fi
 
-echo $instances
+echo "Instances requested: $instances"
 
 terraform plan -var "instances=$instances"
 
+plan_result=$?
+
+if [ "$plan_result" -ne 0 ] ; then
+	echo "Errors encountered. Stopping"
+	exit "$plan_result"
+fi
+
+echo "Is this what you want to do?"
+
+read confirm
+
+
+if [ "$confirm" = "yes" ]; then
+	echo "Proceeding with the requested update"
+	# terraform apply -var "instances=$instances"
+else
+	echo "Leaving as is"
+fi
