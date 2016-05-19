@@ -6,7 +6,7 @@ provider "aws" {
 
 /* App servers */
 resource "aws_instance" "angoss-server" {
-  count = 0
+  count = "${var.instances}"
   ami = "${lookup(var.amis-angoss, var.region)}"
   instance_type = "m4.xlarge"
   subnet_id = "${var.subnet_id}"

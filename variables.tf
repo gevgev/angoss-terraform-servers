@@ -19,3 +19,6 @@ variable "amis-angoss" {
   }
 }
 
+variable "instances" {
+	description = "Number of angoss worker instances to launch. 0 = shut down everything"
+}
