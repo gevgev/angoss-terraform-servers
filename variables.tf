@@ -15,7 +15,8 @@ variable "vpc_security_group_id"    { default = "sg-69edf50e" }
 variable "amis-angoss" {
   description = "Base Custom Angoss AMI v2 to launch the instances with"
   default = {
-    us-west-2 = "ami-71bf4011" 
+    us-west-2 = "ami-5c7d823c" /* =v3 */
+    /*"ami-71bf4011" =v2 */
   }
 }
 

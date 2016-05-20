@@ -25,14 +25,14 @@ if [ "$plan_result" -ne 0 ] ; then
 	exit "$plan_result"
 fi
 
-echo "Is this what you want to do?"
+echo "Is this what you want to do? (only 'yes' will be accepted as aknowledgement)"
 
 read confirm
 
 
 if [ "$confirm" = "yes" ]; then
 	echo "Proceeding with the requested update"
-	# terraform apply -var "instances=$instances"
+	terraform apply -var "instances=$instances"
 else
 	echo "Leaving as is"
 fi
