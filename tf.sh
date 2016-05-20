@@ -9,8 +9,8 @@ fi
 
 readonly instances=$1
 
-if [ "$instances" -gt 2 -o "$instances" -lt 1 ]; then
-  echo "ERROR: max allowed instances is 2"
+if [ "$instances" -gt 2 -o "$instances" -lt 0 ]; then
+  echo "ERROR: Allowed instances count is 0, 1, 2"
   exit 1
 fi
 
